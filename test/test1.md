@@ -1,7 +1,7 @@
 首先执行示例
 
 1.查询1
-```
+```sql
 SELECT d.department_name，count(e.job_id)as "部门总人数"，
 avg(e.salary)as "平均工资"
 from hr.departments d，hr.employees e
@@ -13,7 +13,7 @@ GROUP BY department_name;
 
 2.查询2
 
-```
+```sql
 SELECT d.department_name，count(e.job_id)as "部门总人数"，
 avg(e.salary)as "平均工资"
 FROM hr.departments d，hr.employees e
