@@ -102,4 +102,11 @@ Predicate Information (identified by operation id):
 使用查询2进行优化指导，经观察sqldeveloper的优化指导工具并未给出优化信息，所以此语句最优
 
 自定义设计sql语句：
-
+```sql
+SELECT d.department_name，count(e.job_id)as "部门总人数"，
+avg(e.salary)as "平均工资"
+FROM hr.departments d，hr.employees e
+WHERE d.department_id = e.department_id
+AND d.department_name in ('IT'，'Sales');
+GROUP BY department_name
+```
