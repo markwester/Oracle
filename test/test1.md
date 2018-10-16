@@ -10,7 +10,7 @@ and d.department_name in ('IT'，'Sales')
 GROUP BY department_name;
 ```
 优化指导：
-
+```
 Plan hash value: 3808327043
 
  
@@ -39,7 +39,7 @@ Predicate Information (identified by operation id):
  
    4 - filter("D"."DEPARTMENT_NAME"='IT' OR "D"."DEPARTMENT_NAME"='Sales')
    5 - access("D"."DEPARTMENT_ID"="E"."DEPARTMENT_ID")
-
+```
 
 
 2.查询2
@@ -55,7 +55,7 @@ HAVING d.department_name in ('IT'，'Sales');
 
 
 优化指导：
-
+```
 Plan hash value: 2128232041
 
  
@@ -86,7 +86,7 @@ Predicate Information (identified by operation id):
    1 - filter("DEPARTMENT_NAME"='IT' OR "DEPARTMENT_NAME"='Sales')
    6 - access("D"."DEPARTMENT_ID"="E"."DEPARTMENT_ID")
        filter("D"."DEPARTMENT_ID"="E"."DEPARTMENT_ID")
- 
+ ```
 
 查询结果相同
 
