@@ -6,7 +6,7 @@
 第3步：用户hr连接到pdborcl，查询new_user授予它的视图myview
 ![第三步截图](../Imges/oracle_lab2_3.png)
 以下样例查看表空间的数据库文件，以及每个文件的磁盘占用情况。
-![第四步截图](../Imges/oracle_lab2_4.png)
-![第四步截图](../Imges/oracle_lab2_5.png)
+![第四步截图](../Imges/orcale_lab2_4.png)
+![第四步截图](../Imges/oralce_lab2_5.png)
 
 
