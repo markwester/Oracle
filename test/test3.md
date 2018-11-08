@@ -68,6 +68,11 @@ PCTFREE 10
 NOCOMPRESS NO INMEMORY 
 );
 ```
+截图：
+
+![第一步截图](../Imges/oracle_lab3_1.png)
+![第一步截图](../Imges/oracle_lab3_2.png)
+
 order_details:
 ```sql
 CREATE TABLE order_details 
@@ -131,3 +136,65 @@ PCTFREE 10
 NOCOMPRESS NO INMEMORY  
 );
 ```
+截图：
+
+![第一步截图](../Imges/oracle_lab3_3.png)
+![第一步截图](../Imges/oracle_lab3_4.png)
+
+2.权限分配
+查询权限分配与表空间权限
+
+![第一步截图](../Imges/oracle_lab3_5.png)
+
+3.插入数据和联合查询
+插入到orders
+
+![第一步截图](../Imges/oracle_lab3_6.png)
+
+插入到order_details
+
+![第一步截图](../Imges/oracle_lab3_7.png)
+
+联合查询
+
+```sql
+select 
+    orders.order_id as AID,
+    orders.customer_name as customer_name,
+    order_details.order_id as BID,
+    ORDER_DETAILS.PRODUCT_ID as product_id
+from
+    ORDERS
+INNER JOIN ORDER_DETAILS ON (orders.order_id=order_details.order_id);
+```
+结果:
+
+![第一步截图](../Imges/oracle_lab3_8.png)
+
+4.执行计划的分析
+```sql
+EXPLAIN plan for
+select 
+    orders.order_id as AID,
+    orders.customer_name as customer_name,
+    order_details.order_id as BID,
+    ORDER_DETAILS.PRODUCT_ID as product_id
+from
+    ORDERS
+INNER JOIN ORDER_DETAILS ON (orders.order_id=order_details.order_id);
+
+select * from table(dbms_xplan.display());
+
+```
+result:
+
+![第一步截图](../Imges/oracle_lab3_9.png)
+
+根据执行分析：先对order_details进行了全盘搜索，后对分区进行引用，
+由于order_id为order_drtails的外间，便对order_id进行索引的唯一扫描，且使用了join，进行了连接查询NESTED LOOPS。
+再对orders表进行TABLE ACCESS BY GLOBAL INDEX ROWID，即rowid与索引的扫描，找出符合条件的元素。最后将数据查出。
+
+
+
+
+
