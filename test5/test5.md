@@ -38,7 +38,21 @@ END MyPack;/
 ![1](1.png)
 
 ### 2.测试SaleAmount函数
+```sql
+select MyPack.SaleAmount(1) AS 部门1应收金额,MyPack.SaleAmount(11) AS 部门11应收金额 from dual;
+```
 ![1](2.png)
 
 ### 2.测试Employees函数
+```sql
+set serveroutput on
+DECLARE
+  V_EMPLOYEE_ID NUMBER;    
+BEGIN
+  V_EMPLOYEE_ID := 1;
+  MYPACK.Employees (  V_EMPLOYEE_ID => V_EMPLOYEE_ID) ;  
+  V_EMPLOYEE_ID := 11;
+  MYPACK.Employees (  V_EMPLOYEE_ID => V_EMPLOYEE_ID) ;    
+END;
+```
 ![1](3.png)
